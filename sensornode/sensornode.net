@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source /Users/rmd/Dropbox/kicad/sensornode/sensornode.sch)
-    (date "Sunday, May 05, 2019 at 09:55:36 AM")
+    (date "Monday, May 06, 2019 at 08:38:23 PM")
     (tool "Eeschema (5.1.2-1)-1")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -65,7 +65,7 @@
       (tstamp 5CCADADF))
     (comp (ref RV1)
       (value 100k)
-      (footprint Potentiometer_THT:Potentiometer_ACP_CA6-H2,5_Horizontal)
+      (footprint Potentiometer_THT:Potentiometer_Bourns_3266X_Horizontal)
       (datasheet ~)
       (libsource (lib Device) (part R_POT) (description Potentiometer))
       (sheetpath (names /) (tstamps /))

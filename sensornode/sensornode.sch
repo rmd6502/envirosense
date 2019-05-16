@@ -266,7 +266,7 @@ U 1 1 5CCBD83F
 P 7150 1550
 F 0 "RV1" V 7035 1550 50  0000 C CNN
 F 1 "100k" V 6944 1550 50  0000 C CNN
-F 2 "Potentiometer_THT:Potentiometer_ACP_CA6-H2,5_Horizontal" H 7150 1550 50  0001 C CNN
+F 2 "Potentiometer_THT:Potentiometer_Bourns_3266X_Horizontal" H 7150 1550 50  0001 C CNN
 F 3 "~" H 7150 1550 50  0001 C CNN
 	1    7150 1550
 	0    -1   -1   0   

@@ -1,0 +1,3 @@
+[submodule "sensornode/3dmodels/kicad-ESP8266"]
+	path = sensornode/3dmodels/kicad-ESP8266
+	url = https://github.com/jdunmire/kicad-ESP8266.git
