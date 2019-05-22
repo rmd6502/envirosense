@@ -15,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L Sensor_Gas:MQ-135 U2
+L sensornode-rescue:MQ-135-Sensor_Gas U2
 U 1 1 5CC7BF70
 P 6100 1750
 F 0 "U2" H 6075 2315 50  0000 C CNN
@@ -95,9 +95,7 @@ F 3 "" H 2900 1650 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	5550 1450 5150 1450
-Wire Wire Line
-	6600 1550 6750 1550
+	5550 1450 5300 1450
 Wire Wire Line
 	6600 2000 7000 2000
 Wire Wire Line
@@ -252,40 +250,35 @@ $EndComp
 $Comp
 L power:GND #PWR016
 U 1 1 5CCBD0AA
-P 7550 1600
-F 0 "#PWR016" H 7550 1350 50  0001 C CNN
-F 1 "GND" H 7555 1427 50  0000 C CNN
-F 2 "" H 7550 1600 50  0001 C CNN
-F 3 "" H 7550 1600 50  0001 C CNN
-	1    7550 1600
+P 7750 1600
+F 0 "#PWR016" H 7750 1350 50  0001 C CNN
+F 1 "GND" H 7755 1427 50  0000 C CNN
+F 2 "" H 7750 1600 50  0001 C CNN
+F 3 "" H 7750 1600 50  0001 C CNN
+	1    7750 1600
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_POT RV1
 U 1 1 5CCBD83F
-P 7150 1550
-F 0 "RV1" V 7035 1550 50  0000 C CNN
-F 1 "100k" V 6944 1550 50  0000 C CNN
-F 2 "Potentiometer_THT:Potentiometer_Bourns_3266X_Horizontal" H 7150 1550 50  0001 C CNN
-F 3 "~" H 7150 1550 50  0001 C CNN
-	1    7150 1550
+P 7350 1550
+F 0 "RV1" V 7235 1550 50  0000 C CNN
+F 1 "100k" V 7144 1550 50  0000 C CNN
+F 2 "Potentiometer_THT:Potentiometer_Bourns_3266X_Horizontal" H 7350 1550 50  0001 C CNN
+F 3 "~" H 7350 1550 50  0001 C CNN
+	1    7350 1550
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	7300 1550 7550 1550
+	7500 1550 7750 1550
 Wire Wire Line
-	7550 1550 7550 1600
+	7750 1550 7750 1600
 Wire Wire Line
-	7150 1400 7550 1400
+	7350 1400 7750 1400
 Wire Wire Line
-	7550 1400 7550 1550
-Connection ~ 7550 1550
-Wire Wire Line
-	6750 1550 6750 1150
-Connection ~ 6750 1550
-Wire Wire Line
-	6750 1550 7000 1550
-Text Label 6750 1300 0    50   ~ 0
+	7750 1400 7750 1550
+Connection ~ 7750 1550
+Text Label 7100 1300 0    50   ~ 0
 mq135_adc
 Wire Wire Line
 	3500 2650 4000 2650
@@ -758,7 +751,7 @@ Wire Wire Line
 	6150 5000 6250 5000
 Connection ~ 6150 4800
 Wire Wire Line
-	5150 2000 5550 2000
+	5150 2000 5300 2000
 $Comp
 L Connector:USB_B_Micro J4
 U 1 1 5CCF0605
@@ -887,4 +880,43 @@ F 3 "" H 5850 2800 50  0001 C CNN
 	1    5850 2800
 	1    0    0    -1  
 $EndComp
+$Comp
+L Device:C C6
+U 1 1 5CE46D1C
+P 5300 1850
+F 0 "C6" H 5415 1896 50  0000 L CNN
+F 1 "10u ceramic" H 5415 1805 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 5338 1700 50  0001 C CNN
+F 3 "https://www.samsungsem.com/kr/support/product-search/mlcc/__icsFiles/afieldfile/2019/05/10/19-CL21A106KPFNNNE.pdf" H 5300 1850 50  0001 C CNN
+	1    5300 1850
+	1    0    0    -1  
+$EndComp
+Connection ~ 5300 2000
+Wire Wire Line
+	5300 2000 5550 2000
+Wire Wire Line
+	5300 1700 5300 1450
+Connection ~ 5300 1450
+Wire Wire Line
+	5300 1450 5150 1450
+$Comp
+L Device:R R10
+U 1 1 5CE5CB49
+P 6850 1550
+F 0 "R10" V 6643 1550 50  0000 C CNN
+F 1 "1k8" V 6734 1550 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 6780 1550 50  0001 C CNN
+F 3 "~" H 6850 1550 50  0001 C CNN
+	1    6850 1550
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6600 1550 6700 1550
+Wire Wire Line
+	7000 1550 7100 1550
+Wire Wire Line
+	7100 1300 7100 1550
+Connection ~ 7100 1550
+Wire Wire Line
+	7100 1550 7200 1550
 $EndSCHEMATC
