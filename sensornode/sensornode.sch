@@ -15,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L sensornode-rescue:MQ-135-Sensor_Gas U2
+L locals:MQ-135-Sensor_Gas U2
 U 1 1 5CC7BF70
 P 6100 1750
 F 0 "U2" H 6075 2315 50  0000 C CNN
@@ -631,7 +631,7 @@ Text Label 3650 2350 0    50   ~ 0
 TX
 Text Label 3650 2550 0    50   ~ 0
 RX
-Text Label 3600 3250 0    50   ~ 0
+Text Label 3850 3750 0    50   ~ 0
 ~RST
 $Comp
 L Connector:Conn_01x04_Male J3
@@ -919,4 +919,17 @@ Wire Wire Line
 Wire Wire Line
 	6600 1450 6700 1550
 NoConn ~ 6600 1550
+$Comp
+L Jumper:SolderJumper_2_Open JP1
+U 1 1 5CEDCCCC
+P 3850 3400
+F 0 "JP1" V 3804 3468 50  0000 L CNN
+F 1 "SolderJumper_2_Open" V 3895 3468 50  0000 L CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_Pad1.0x1.5mm" H 3850 3400 50  0001 C CNN
+F 3 "~" H 3850 3400 50  0001 C CNN
+	1    3850 3400
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3850 3550 3850 3750
 $EndSCHEMATC
