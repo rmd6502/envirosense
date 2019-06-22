@@ -93,6 +93,7 @@ void setup() {
 
 void reconnect() {
   // Loop until we're reconnected
+  Serial.print("Not connected, current state "); Serial.println(client.state());
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     // Create a random client ID
@@ -101,7 +102,6 @@ void reconnect() {
     // Attempt to connect
     if (client.connect(clientId.c_str())) {
       Serial.println("connected");
-      // Once connected, publish an announcement...
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
