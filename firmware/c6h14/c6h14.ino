@@ -3,26 +3,33 @@
 #include <ESP8266WiFi.h>
 #include <ArduinoOTA.h>
 #include <PubSubClient.h>
+#include <deque>
 
 #include "config.h"
 
 enum States {
   IDLE,
   HEATING,
-  READING
+  READING,
+  RECONNECTING
 };
 
 States currentState = IDLE;
 uint32_t nextStateTime = 0;
 
 uint32_t transitionDelaysMs[] = {
-  0, 60000, 20000
+  0, 60000, 20000, 5000
 };
 const uint8_t heater = 4;
 
 const float vcesat = 0.3;
 uint32_t maxSleep = ESP.deepSleepMax();
 uint32_t sleepTimeUS = 60 * 1e6;
+
+const int NUM_SAMPLES = 32;
+std::deque<uint16_t> samples;
+uint32_t sample_sum = 0;
+int sample_index = 0;
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -106,6 +113,8 @@ void reconnect() {
       Serial.print("failed, rc=");
       Serial.print(client.state());
       Serial.println(" try again in 5 seconds");
+      currentState = RECONNECTING;
+      nextStateTime = millis() + transitionDelaysMs[currentState];
       // Wait 5 seconds before retrying
       return;
     }
@@ -114,10 +123,10 @@ void reconnect() {
 
 void loop() {
   ArduinoOTA.handle();
-  if (!client.connected()) {
+  client.loop();
+  if (currentState != RECONNECTING && !client.connected()) {
     reconnect();
   }
-  client.loop();
   if (millis() < nextStateTime && currentState != READING) return;
   switch (currentState) {
     case IDLE:
@@ -129,12 +138,21 @@ void loop() {
       Serial.println("Transition to READING");
       currentState = READING;
       break;
-    case READING:
+    case READING: {
       uint16_t reading = analogRead(A0);
+      sample_sum += reading;
+      samples.push_back(reading);
+      if (samples.size() > NUM_SAMPLES) {
+        sample_sum -= samples.front();
+        samples.pop_front();
+      }
+      double voltage = ((double)sample_sum/samples.size())/1024.0;
 //      Serial.print("reading ");
 //      Serial.println(reading);
       DynamicJsonDocument json(1024);
-      json["voltage"] = ((double)reading)/1024.0;
+      json["sensor"] = "mq135";
+      json["voltage"] = voltage;
+      json["samples"] = samples.size();
       if (client.connected()) {
         client.beginPublish(topic.c_str(), measureJson(json), true);
         serializeJson(json, client);
@@ -146,6 +164,11 @@ void loop() {
       currentState = IDLE;
       analogWrite(heater, 0);
       ESP.deepSleep(sleepTimeUS, WAKE_RF_DEFAULT);
+      break;
+    }
+    case RECONNECTING:
+      Serial.println("transition to reading");
+      currentState = READING;
       break;
   }
   nextStateTime = millis() + transitionDelaysMs[currentState];
