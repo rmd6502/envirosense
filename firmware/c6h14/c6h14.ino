@@ -24,7 +24,7 @@ const uint8_t heater = 4;
 
 const float vcesat = 0.3;
 uint32_t maxSleep = ESP.deepSleepMax();
-uint32_t sleepTimeUS = 60 * 1e6;
+uint32_t sleepTimeUS = 5 * 60 * 1e6;
 
 const int NUM_SAMPLES = 32;
 std::deque<uint16_t> samples;
@@ -34,7 +34,7 @@ int sample_index = 0;
 WiFiClient espClient;
 PubSubClient client(espClient);
 
-const String topic = "/c6h14";
+const String topic = "forest";
 
 void setup() {
   // put your setup code here, to run once:
@@ -54,7 +54,7 @@ void setup() {
   WiFiManager wifiManager;
   wifiManager.setConfigPortalTimeout(180);
   if (!wifiManager.autoConnect(apName, apPass)) {
-    Serial.println("failed to connect, we should reset as see if it connects");
+    Serial.println("failed to connect, we should reset to see if it connects");
     delay(1000);
     ESP.reset();
     delay(5000);
@@ -146,20 +146,25 @@ void loop() {
         sample_sum -= samples.front();
         samples.pop_front();
       }
-      double voltage = ((double)sample_sum/samples.size())/1024.0;
-//      Serial.print("reading ");
-//      Serial.println(reading);
-      DynamicJsonDocument json(1024);
-      json["sensor"] = "mq135";
-      json["voltage"] = voltage;
-      json["samples"] = samples.size();
-      if (client.connected()) {
-        client.beginPublish(topic.c_str(), measureJson(json), true);
-        serializeJson(json, client);
-        client.endPublish();
+      if (samples.size() == NUM_SAMPLES) {
+          double voltage = ((double)sample_sum/samples.size())/1024.0;
+    //      Serial.print("reading ");
+    //      Serial.println(reading);
+          DynamicJsonDocument json(2048);
+          json["app_key"] = "app";
+          json["net_key"] = "net";
+          json["device_id"] = "esp8266-mq135-rmd";
+          JsonObject channels = json.createNestedObject("channels");      
+          channels["ch1"] = String(voltage,3);
+          if (client.connected()) {
+            client.beginPublish(topic.c_str(), measureJson(json), true);
+            serializeJson(json, client);
+            client.endPublish();
+          }
+      } else {
+        delay(50);
+        if (millis() < nextStateTime) return;
       }
-      delay(50);
-      if (millis() < nextStateTime) return;
       Serial.println("Transition to IDLE");
       currentState = IDLE;
       analogWrite(heater, 0);
