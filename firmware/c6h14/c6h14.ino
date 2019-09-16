@@ -1,3 +1,7 @@
+#include <CStringBuilder.h>
+
+#include <AceTime.h>
+
 #include <Arduino_JSON.h>
 
 #include <WiFiManager.h>
@@ -7,6 +11,13 @@
 #include <deque>
 
 #include "config.h"
+
+using namespace ace_time;
+using namespace ace_time::clock;
+
+static BasicZoneProcessor pacificProcessor;
+static NtpClock ntpClock;
+SystemClockLoop systemClock(&ntpClock, nullptr /*backup*/);
 
 enum States {
   IDLE,
@@ -19,7 +30,7 @@ States currentState = IDLE;
 uint32_t nextStateTime = 0;
 
 uint32_t transitionDelaysMs[] = {
-  0, 60000, 20000, 5000
+  10000, 60000, 20000, 5000
 };
 const uint8_t heater = 4;
 
@@ -62,6 +73,8 @@ void setup() {
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
 
+  ntpClock.setup(nullptr, nullptr);
+
   ArduinoOTA.setHostname(host);
 
    ArduinoOTA
@@ -97,6 +110,7 @@ void setup() {
 
 void loop() {
   ArduinoOTA.handle();
+  systemClock.loop();
   if (millis() < nextStateTime && currentState != READING) return;
   switch (currentState) {
     case IDLE:
@@ -147,17 +161,27 @@ void loop() {
            }
         ]
      */
+          acetime_t epochSeconds = systemClock.getNow();
+          auto pacificTz = TimeZone::forZoneInfo(&zonedb::kZoneAmerica_Los_Angeles,
+            &pacificProcessor);
+          auto pacificTime = ZonedDateTime::forEpochSeconds(epochSeconds, pacificTz);
+          char timeBuf[100];
+          CStringBuilder timePrint(timeBuf, sizeof(timeBuf));
+          pacificTime.printTo(timePrint);
+          
           // Single reading, and an array of readings
           JSONVar reading, readings;
           reading["app_key"] = "app";
           reading["net_key"] = "net";
           reading["device_id"] = "esp8266-mq135-rmd";
+          reading["captured_at"] = String(timeBuf);
           JSONVar channels;
           channels["ch1"] = String(voltage,3);
           reading["channels"] = channels;
           readings[0] = reading;
           Serial.print("sending bytes "); Serial.println(JSON.stringify(readings));
           if (client.begin(espClient, apiServer)) {
+            client.addHeader("Content-Type", "application/json");
             int status = client.POST(JSON.stringify(readings));
             Serial.print("send status "); Serial.println(status);
           } else {
