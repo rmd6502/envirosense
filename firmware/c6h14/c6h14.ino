@@ -1,8 +1,9 @@
-#include <ArduinoJson.h>
+#include <Arduino_JSON.h>
+
 #include <WiFiManager.h>
 #include <ESP8266WiFi.h>
+#include <ESP8266HTTPClient.h>
 #include <ArduinoOTA.h>
-#include <PubSubClient.h>
 #include <deque>
 
 #include "config.h"
@@ -24,7 +25,7 @@ const uint8_t heater = 4;
 
 const float vcesat = 0.3;
 uint32_t maxSleep = ESP.deepSleepMax();
-uint32_t sleepTimeUS = 5 * 60 * 1e6;
+uint32_t sleepTimeUS = 5 /* 60 */* 1e6;
 
 const int NUM_SAMPLES = 32;
 std::deque<uint16_t> samples;
@@ -32,9 +33,7 @@ uint32_t sample_sum = 0;
 int sample_index = 0;
 
 WiFiClient espClient;
-PubSubClient client(espClient);
-
-const String topic = "forest";
+HTTPClient client;
 
 void setup() {
   // put your setup code here, to run once:
@@ -62,8 +61,6 @@ void setup() {
   Serial.println("WiFi connected");
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
-
-  client.setServer(mqttServer, 1883);
 
   ArduinoOTA.setHostname(host);
 
@@ -98,35 +95,8 @@ void setup() {
     }
 }
 
-void reconnect() {
-  // Loop until we're reconnected
-  Serial.print("Not connected, current state "); Serial.println(client.state());
-  while (!client.connected()) {
-    Serial.print("Attempting MQTT connection...");
-    // Create a random client ID
-    String clientId = "ESP8266Client-";
-    clientId += String(random(0xffff), HEX);
-    // Attempt to connect
-    if (client.connect(clientId.c_str())) {
-      Serial.println("connected");
-    } else {
-      Serial.print("failed, rc=");
-      Serial.print(client.state());
-      Serial.println(" try again in 5 seconds");
-      currentState = RECONNECTING;
-      nextStateTime = millis() + transitionDelaysMs[currentState];
-      // Wait 5 seconds before retrying
-      return;
-    }
-  }
-}
-
 void loop() {
   ArduinoOTA.handle();
-  client.loop();
-  if (currentState != RECONNECTING && !client.connected()) {
-    reconnect();
-  }
   if (millis() < nextStateTime && currentState != READING) return;
   switch (currentState) {
     case IDLE:
@@ -150,16 +120,48 @@ void loop() {
           double voltage = ((double)sample_sum/samples.size())/1024.0;
     //      Serial.print("reading ");
     //      Serial.println(reading);
-          DynamicJsonDocument json(2048);
-          json["app_key"] = "app";
-          json["net_key"] = "net";
-          json["device_id"] = "esp8266-mq135-rmd";
-          JsonObject channels = json.createNestedObject("channels");      
+    /*
+     * [
+          {
+            "app_key": "app",
+            "net_key": "net",
+            "device_id": "esp8266-mq135-rmd",
+            "latitude": 29.774975,
+            "longitude":  -95.351613,
+            "captured_at": "2019-08-22 21:03:03 -0700",
+            "channels": {
+              "ch1": 0.414001
+            }
+           },
+          
+          {
+            "app_key": "app",
+            "net_key": "net",
+            "device_id": "esp8266-mq135-rmd",
+            "latitude": 29.774975,
+            "longitude":  -95.351613,
+            "captured_at": "2019-08-22 21:05:03 -0700",
+            "channels": {
+              "ch1": 0.514001
+            }
+           }
+        ]
+     */
+          // Single reading, and an array of readings
+          JSONVar reading, readings;
+          reading["app_key"] = "app";
+          reading["net_key"] = "net";
+          reading["device_id"] = "esp8266-mq135-rmd";
+          JSONVar channels;
           channels["ch1"] = String(voltage,3);
-          if (client.connected()) {
-            client.beginPublish(topic.c_str(), measureJson(json), true);
-            serializeJson(json, client);
-            client.endPublish();
+          reading["channels"] = channels;
+          readings[0] = reading;
+          Serial.print("sending bytes "); Serial.println(JSON.stringify(readings));
+          if (client.begin(espClient, apiServer)) {
+            int status = client.POST(JSON.stringify(readings));
+            Serial.print("send status "); Serial.println(status);
+          } else {
+            Serial.println("Failed to connect to server");
           }
       } else {
         delay(50);
@@ -177,4 +179,6 @@ void loop() {
       break;
   }
   nextStateTime = millis() + transitionDelaysMs[currentState];
+  Serial.print("nextStateTime "); Serial.println(nextStateTime);
+  Serial.print("current millis "); Serial.println(millis());
 }
