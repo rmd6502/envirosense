@@ -48,6 +48,7 @@ int sample_index = 0;
 
 WiFiClient espClient;
 HTTPClient client;
+SPS30 sps30;
 
 void setup() {
   // put your setup code here, to run once:
@@ -101,6 +102,22 @@ void setup() {
       else if (error == OTA_END_ERROR) Serial.println("End Failed");
     });
     ArduinoOTA.begin();
+
+    // set driver debug level
+    sps30.EnableDebugging(DEBUG);
+    if (sps30.begin(SP30_COMMS) == false) {
+      Errorloop("could not initialize communication channel.", 0);
+    }
+    if (sps30.probe() == false) {
+      Errorloop("could not probe / connect with SPS30.", 0);
+    }
+    else
+      Serial.println(F("Detected SPS30."));
+    if (sps30.start() == true)
+      Serial.println(F("Measurement started"));
+    else
+      Errorloop("Could NOT start measurement", 0);
+
 }
 
 void loop() {
