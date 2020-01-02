@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name sensirtile-eagle-import)(type Legacy)(uri ${KIPRJMOD}/sensirtile-eagle-import.lib)(options "")(descr ""))
+)

@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name sensornode-rescue)(type Legacy)(uri ${KIPRJMOD}/sensornode-rescue.lib)(options "")(descr ""))
+  (lib (name locals)(type Legacy)(uri /Users/rdiamond/Documents/envirosense/sensornode/3dmodels/local_libraries.lib)(options "")(descr ""))
+)
