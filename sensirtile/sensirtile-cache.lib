@@ -1,0 +1,205 @@
+EESchema-LIBRARY Version 2.4
+#encoding utf-8
+#
+# sensirtile-eagle-import_0402CAP.KW
+#
+DEF sensirtile-eagle-import_0402CAP.KW C 0 40 Y Y 1 L N
+F0 "C" 60 115 59 H V L BNN
+F1 "sensirtile-eagle-import_0402CAP.KW" 60 -85 59 H V L BNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+S -80 20 80 40 1 0 0 F
+S -80 60 80 80 1 0 0 F
+P 2 1 0 0 0 0 0 20 N
+P 2 1 0 0 0 100 0 80 N
+X 1 1 0 200 100 D 0 0 1 0 P
+X 2 2 0 -100 100 U 0 0 1 0 P
+ENDDRAW
+ENDDEF
+#
+# sensirtile-eagle-import_0402LED
+#
+DEF sensirtile-eagle-import_0402LED ~ 0 40 Y Y 1 L N
+F0 "" -200 300 70 H V L BNN
+F1 "sensirtile-eagle-import_0402LED" -200 -400 70 H V L BNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 1 0 0 -100 -200 100 0 N
+P 2 1 0 0 -100 200 -100 -200 N
+P 2 1 0 0 100 0 -100 200 N
+P 2 1 0 0 100 100 100 -100 N
+X P$1 P$1 -300 0 200 R 50 50 1 0 B
+X P$2 P$2 300 0 200 L 50 50 1 0 B
+ENDDRAW
+ENDDEF
+#
+# sensirtile-eagle-import_0402RES.KW
+#
+DEF sensirtile-eagle-import_0402RES.KW R 0 40 Y Y 1 L N
+F0 "R" -150 59 59 H V L BNN
+F1 "sensirtile-eagle-import_0402RES.KW" -150 -130 59 H V L BNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 1 0 0 -100 0 -85 40 N
+P 2 1 0 0 -85 40 -60 -40 N
+P 2 1 0 0 -60 -40 -35 40 N
+P 2 1 0 0 -35 40 -10 -40 N
+P 2 1 0 0 -10 -40 15 40 N
+P 2 1 0 0 15 40 40 -40 N
+P 2 1 0 0 40 -40 65 40 N
+P 2 1 0 0 65 40 90 -40 N
+P 2 1 0 0 90 -40 100 0 N
+X 1 1 -200 0 100 R 0 0 1 0 P
+X 2 2 200 0 100 L 0 0 1 0 P
+ENDDRAW
+ENDDEF
+#
+# sensirtile-eagle-import_BC847BLP4
+#
+DEF sensirtile-eagle-import_BC847BLP4 ~ 0 40 Y Y 1 L N
+F0 "" -320 290 70 H V L BNN
+F1 "sensirtile-eagle-import_BC847BLP4" -290 -330 70 H V L BNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+C 0 0 152 1 0 10 N
+T 0 -210 -100 70 0 1 0 B Normal 0 L B
+T 0 130 120 70 0 1 0 C Normal 0 L B
+T 0 130 -180 70 0 1 0 E Normal 0 L B
+P 2 1 0 0 -10 100 -10 -100 N
+P 2 1 0 0 0 -60 0 -100 N
+P 2 1 0 0 0 -60 100 -120 N
+P 2 1 0 0 0 0 -180 0 N
+P 2 1 0 0 0 0 0 -60 N
+P 2 1 0 0 0 60 0 0 N
+P 2 1 0 0 0 60 100 120 N
+P 2 1 0 0 0 100 0 60 N
+P 2 1 0 0 70 -90 100 -120 N
+P 2 1 0 0 100 -120 60 -110 N
+P 2 1 0 0 100 -120 100 -170 N
+P 2 1 0 0 100 120 100 180 N
+X P$1 P$1 -380 0 200 R 50 50 1 0 B
+X P$2 P$2 100 -370 200 U 50 50 1 0 B
+X P$3 P$3 100 380 200 D 50 50 1 0 B
+ENDDRAW
+ENDDEF
+#
+# sensirtile-eagle-import_BQ25504
+#
+DEF sensirtile-eagle-import_BQ25504 U 0 40 Y Y 1 L N
+F0 "U" -200 1200 70 H V L BNN
+F1 "sensirtile-eagle-import_BQ25504" -200 -1200 70 H V L BNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 1 0 0 -800 -700 -800 800 N
+P 2 1 0 0 -800 800 800 800 N
+P 2 1 0 0 800 -700 -800 -700 N
+P 2 1 0 0 800 800 800 -700 N
+X VSS1 P$1 -1000 300 200 R 50 50 1 0 B
+X OK_PROG P$10 1000 -100 200 L 50 50 1 0 B
+X VBAT_OK P$11 1000 100 200 L 50 50 1 0 B
+X AVSS P$12 1000 300 200 L 50 50 1 0 B
+X VSS13 P$13 300 1000 200 D 50 50 1 0 B
+X VBAT P$14 100 1000 200 D 50 50 1 0 B
+X VSTOR P$15 -100 1000 200 D 50 50 1 0 B
+X LBST P$16 -300 1000 200 D 50 50 1 0 B
+X PAD P$17 -500 1000 200 D 50 50 1 0 B
+X VIN_DC P$2 -1000 100 200 R 50 50 1 0 B
+X VOC_SAMP P$3 -1000 -100 200 R 50 50 1 0 B
+X VREF_SAMP P$4 -1000 -300 200 R 50 50 1 0 B
+X OT_PROG P$5 -300 -900 200 U 50 50 1 0 B
+X VBAT_OV P$6 -100 -900 200 U 50 50 1 0 B
+X VRDIV P$7 100 -900 200 U 50 50 1 0 B
+X VBAT_UV P$8 300 -900 200 U 50 50 1 0 B
+X OK_HYST P$9 1000 -300 200 L 50 50 1 0 B
+ENDDRAW
+ENDDEF
+#
+# sensirtile-eagle-import_CAP0603-CAP
+#
+DEF sensirtile-eagle-import_CAP0603-CAP C 0 40 Y Y 1 L N
+F0 "C" 60 115 59 H V L BNN
+F1 "sensirtile-eagle-import_CAP0603-CAP" 60 -85 59 H V L BNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+S -80 20 80 40 1 0 0 F
+S -80 60 80 80 1 0 0 F
+P 2 1 0 0 0 0 0 20 N
+P 2 1 0 0 0 100 0 80 N
+X 1 1 0 200 100 D 0 0 1 0 P
+X 2 2 0 -100 100 U 0 0 1 0 P
+ENDDRAW
+ENDDEF
+#
+# sensirtile-eagle-import_DFE252012C
+#
+DEF sensirtile-eagle-import_DFE252012C ~ 0 40 Y Y 1 L N
+F0 "" -100 400 70 H V L BNN
+F1 "sensirtile-eagle-import_DFE252012C" -100 -400 70 H V L BNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 1 0 0 -200 -200 -200 200 N
+P 2 1 0 0 -200 200 200 200 N
+P 2 1 0 0 200 -200 -200 -200 N
+P 2 1 0 0 200 200 200 -200 N
+X P$1 P$1 -400 0 200 R 50 50 1 0 B
+X P$2 P$2 400 0 200 L 50 50 1 0 B
+ENDDRAW
+ENDDEF
+#
+# sensirtile-eagle-import_GND
+#
+DEF sensirtile-eagle-import_GND #GND 0 40 Y Y 1 L P
+F0 "#GND" 0 0 50 H I C CNN
+F1 "sensirtile-eagle-import_GND" -100 -100 59 H V L BNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 1 0 0 -75 0 75 0 N
+X GND 1 0 100 100 D 0 0 1 0 W
+ENDDRAW
+ENDDEF
+#
+# sensirtile-eagle-import_M01SMDNS
+#
+DEF sensirtile-eagle-import_M01SMDNS JP 0 40 Y Y 1 L N
+F0 "JP" -100 130 59 H V L BNN
+F1 "sensirtile-eagle-import_M01SMDNS" -100 -200 59 H V L BNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 1 0 0 -100 100 -100 -100 N
+P 2 1 0 0 -100 100 150 100 N
+P 2 1 0 0 50 0 100 0 N
+P 2 1 0 0 150 -100 -100 -100 N
+P 2 1 0 0 150 -100 150 100 N
+X 1 1 300 0 200 L 0 0 1 0 P
+ENDDRAW
+ENDDEF
+#
+# sensirtile-eagle-import_M021X02_NO_SILK
+#
+DEF sensirtile-eagle-import_M021X02_NO_SILK JP 0 40 Y Y 1 L N
+F0 "JP" -100 230 59 H V L BNN
+F1 "sensirtile-eagle-import_M021X02_NO_SILK" -100 -200 59 H V L BNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 1 0 0 -100 200 -100 -100 N
+P 2 1 0 0 -100 200 150 200 N
+P 2 1 0 0 50 0 100 0 N
+P 2 1 0 0 50 100 100 100 N
+P 2 1 0 0 150 -100 -100 -100 N
+P 2 1 0 0 150 -100 150 200 N
+X 1 1 300 0 200 L 50 0 1 0 P
+X 2 2 300 100 200 L 50 0 1 0 P
+ENDDRAW
+ENDDEF
+#
+#End Library
