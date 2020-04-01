@@ -1,0 +1,18 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <body>
+    <h1>/home/rmd6502/Arduino/envirosense/esp32_sensornode/esp32_sensornode.sch</h1>
+    <p>Sat 07 Mar 2020 05:44:25 PM PST</p>
+    <p>Eeschema 5.1.4+dfsg1-1</p>
+    <p><b>Component Count:</b>28</p>
+    <table>
+    <tr><th style='width:640px'>Ref</th><th>Qnty</th><th>Value</th><th>Part</th><th>Datasheet</th><th>Description</th><th>Vendor</th></tr><tr><td>C1, C2, C3, C4, C5</td><td>5</td><td>C</td><td>Device:C</td><td>~</td><td>Unpolarized capacitor</td><td></td></tr><tr><td>J1</td><td>1</td><td>Conn_01x06_Female</td><td>Connector:Conn_01x06_Female</td><td>~</td><td>Generic connector, single row, 01x06, script generated (kicad-library-utils/schlib/autogen/connector/)</td><td></td></tr><tr><td>J2</td><td>1</td><td>Conn_01x07_Male</td><td>Connector:Conn_01x07_Male</td><td>~</td><td>Generic connector, single row, 01x07, script generated (kicad-library-utils/schlib/autogen/connector/)</td><td></td></tr><tr><td>J3</td><td>1</td><td>Micro_SD_Card</td><td>Connector:Micro_SD_Card</td><td>http://katalog.we-online.de/em/datasheet/693072010801.pdf</td><td>Micro SD Card Socket</td><td></td></tr><tr><td>J4</td><td>1</td><td>USB_B_Mini</td><td>Connector:USB_B_Mini</td><td>~</td><td>USB Mini Type B connector</td><td></td></tr><tr><td>J5</td><td>1</td><td>Conn_01x02_Male</td><td>Connector:Conn_01x02_Male</td><td>~</td><td>Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)</td><td></td></tr><tr><td>J6, J7</td><td>2</td><td>Conn_02x03_Odd_Even</td><td>Connector_Generic:Conn_02x03_Odd_Even</td><td>~</td><td>Generic connector, double row, 02x03, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)</td><td></td></tr><tr><td>Q1, Q2, Q3</td><td>3</td><td>NTR2101P</td><td>Transistor_FET:NTR2101P</td><td>http://www.onsemi.com/pub/Collateral/NTR2101P-D.PDF</td><td>-3.7A Id, -8V Vds, P-Channel MOSFET, SOT-23</td><td></td></tr><tr><td>R1, R2, R3, R4, R5, R6, R7, R8</td><td>8</td><td>R</td><td>Device:R</td><td>~</td><td>Resistor</td><td></td></tr><tr><td>U1</td><td>1</td><td>ESP32-WROOM-32</td><td>RF_Module:ESP32-WROOM-32</td><td>https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32_datasheet_en.pdf</td><td>RF Module, ESP32-D0WDQ6 SoC, Wi-Fi 802.11b/g/n, Bluetooth, BLE, 32-bit, 2.7-3.6V, onboard antenna, SMD</td><td></td></tr><tr><td>U2</td><td>1</td><td>BME280</td><td>Sensor:BME280</td><td>https://ae-bst.resource.bosch.com/media/_tech/media/datasheets/BST-BME280-DS002.pdf</td><td>It is a digital 3 in 1 sensor with humidity, pressure and temperature measurements, LGA-8</td><td></td></tr><tr><td>U3</td><td>1</td><td>BQ24075</td><td>Battery_Management:BQ24075</td><td>http://www.ti.com/lit/ds/symlink/bq24075.pdf</td><td>USB-Friendly Li-Ion Battery Charger and Power-Path Management</td><td></td></tr><tr><td>U4</td><td>1</td><td>CH330N</td><td>Interface_USB:CH330N</td><td>http://www.wch.cn/downloads/file/240.html</td><td>USB serial converter, UART, SOIC-8</td><td></td></tr><tr><td>U5</td><td>1</td><td>LM1117-3.3</td><td>Regulator_Linear:LM1117-3.3</td><td>http://www.ti.com/lit/ds/symlink/lm1117.pdf</td><td>800mA Low-Dropout Linear Regulator, 3.3V fixed output, TO-220/TO-252/TO-263/SOT-223</td><td></td></tr><!--TABLEROW-->
+    </table>
+    </body>
+</html>
+    

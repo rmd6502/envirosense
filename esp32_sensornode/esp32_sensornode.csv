@@ -1,0 +1,22 @@
+"Id","Designator","Package","Quantity","Designation","Supplier and ref","LCSC Part Number"
+5,"J1","PinHeader_1x06_P2.54mm_Vertical",1,"Conn_01x06_Female",,
+6,"J2","PinHeader_1x07_P2.54mm_Vertical",1,"Conn_01x07_Male",,
+7,"J3","microSD_HC_Wuerth_693072010801",1,"Micro_SD_Card",,"C341092"
+8,"J4","USB_Mini-B_Lumberg_2486_01_Horizontal",1,"USB_B_Mini",,"C69074"
+9,"U1","ESP32-WROOM-32",1,"ESP32-WROOM-32",,"C95209"
+10,"U2","Bosch_LGA-8_2.5x2.5mm_P0.65mm_ClockwisePinNumbering",1,"BME280",,"C431940"
+11,"U3","QFN-16-1EP_3x3mm_P0.5mm_EP1.7x1.7mm_ThermalVias",1,"BQ24075",,"C15464"
+12,"U4","SOIC-8_3.9x4.9mm_P1.27mm",1,"CH330N",,"C108996"
+13,"U5","SOT-223-3_TabPin2",1,"LM1117-3.3",,"C126027"
+14,"C1,C3,C4","C_0603_1608Metric",3,"2.2u 10v",,"C415535"
+15,"C2,C5","C_0603_1608Metric",2,"10u 10v",,"C386081"
+17,"J6,J7","PinHeader_2x03_P2.54mm_Vertical",2,"Conn_02x03_Odd_Even",,
+18,"Q1,Q2,Q3","SOT-23",3,"NDS3332P",,"C258217"
+19,"R3,R4,R8,R9,R7,R10,R12","R_0603_1608Metric",7,"10k",,"C13564"
+20,"R5","R_0603_1608Metric",2,"1.18k",,"C217844"
+20,"R6","R_0603_1608Metric",2,"1.13k",,"C308182"
+21,"Q4","SOT-363_SC-70-6",1,"MMDT2222A",,"C96379"
+22,"R1,R2,R11","R_0603_1608Metric",3,"220R",,"C72821"
+23,"Q5","SOT-23",1,"MMBT2222A",,"C151009"
+24,"J5","JST_EH_S2B-EH_1x02_P2.50mm_Horizontal",1,"Conn_01x02_Male",,
+25,"U6","SOT-23",1,"TPS3839DBZ",,"C96333"

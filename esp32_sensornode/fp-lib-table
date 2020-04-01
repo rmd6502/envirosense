@@ -1,0 +1,5 @@
+(fp_lib_table
+  (lib (name pc2)(type KiCad)(uri /home/rmd6502/Documents/pc2)(options "")(descr ""))
+  (lib (name progcode-resources)(type KiCad)(uri /home/rmd6502/Documents/Builds/progcode-resources)(options "")(descr ""))
+  (lib (name logo)(type KiCad)(uri /home/rmd6502/Arduino/envirosense/sensornode/3dmodels/logo.pretty)(options "")(descr ""))
+)
