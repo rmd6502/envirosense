@@ -375,5 +375,8 @@ void WifiConnect()
     Serial.println(WiFi.localIP());
   }
   else
+  {
     Serial.println(ESP_wifiManager.getStatus(WiFi.status()));
+    ESP_wifiManager.startConfigPortal(apName, apPass);
+  }
 }
